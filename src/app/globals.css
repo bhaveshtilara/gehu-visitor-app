@@ -1,26 +1,82 @@
+/* src/app/globals.css */
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #F9FAFB;
+  color: #374151;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+section {
+  min-height: 100vh;
+  width: 100%;
+  scroll-snap-align: center;
+  transition: background-color 0.3s;
+}
+
+/* Dark Mode Base Styles */
+html.dark body {
+  background-color: #1F2937; /* Dark gray */
+  color: #D1D5DB; /* Light gray */
+}
+
+html.dark section {
+  background-color: #1F2937;
+}
+
+/* Specific Color Overrides for Dark Mode */
+html.dark .bg-[#F9FAFB] {
+  background-color: #374151; /* Darker shade for light backgrounds */
+}
+
+html.dark .text-[#374151] {
+  color: #D1D5DB; /* Light gray for text */
+}
+
+html.dark .bg-[#111827] {
+  background-color: #0F172A; /* Even darker for contrast */
+}
+
+html.dark .text-white {
+  color: #E5E7EB; /* Slightly off-white for readability */
+}
+
+html.dark .bg-[#1E3A8A] {
+  background-color: #1E40AF; /* Lighter blue for buttons */
+}
+
+html.dark .text-[#1E3A8A] {
+  color: #60A5FA; /* Lighter blue for text */
+}
+
+html.dark .bg-[#10B981] {
+  background-color: #34D399; /* Lighter green for accents */
+}
+
+html.dark .text-[#10B981] {
+  color: #6EE7B7; /* Lighter green for text */
+}
+
+html.dark .bg-[#F59E0B] {
+  background-color: #FBBF24; /* Lighter amber for tags */
+}
+
+html.dark .bg-white {
+  background-color: #4B5563; /* Gray for white backgrounds */
+}
+
+/* Ensure Buttons and Cards Transition Smoothly */
+button,
+.bg-[#F9FAFB],
+.bg-[#111827],
+.bg-[#1E3A8A],
+.bg-[#10B981],
+.bg-[#F59E0B] {
+  transition: background-color 0.3s, color 0.3s;
 }
