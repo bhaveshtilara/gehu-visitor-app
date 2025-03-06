@@ -24,7 +24,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
         <motion.div whileHover={{ scale: 1.1 }} className="flex items-center space-x-2">
           <img src="/logo.png" alt="Logo" className="h-8 w-8" />
-          <span className="text-xl font-bold">John Doe</span>
+          <span className="text-xl font-bold">Bhavesh Tilara</span>
         </motion.div>
         <ul className="flex space-x-4 sm:space-x-6">
           {navItems.map((item) => (

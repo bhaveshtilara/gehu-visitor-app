@@ -45,7 +45,7 @@ export default function AboutMe() {
               className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-xl border-4 border-[#10B981]"
             >
               <Image
-                src="/profile-placeholder.jpg" // Add your image to /public/
+                src="/profile.jpg" // Add your image to /public/
                 alt="John Doe"
                 fill
                 className="object-cover"
@@ -60,7 +60,7 @@ export default function AboutMe() {
           {/* Right: Text Content */}
           <motion.div variants={itemVariants} className="text-center lg:text-left">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1E3A8A] dark:text-[#60A5FA] mb-4">
-              Hey, I’m John Doe
+              Hey, I’m Bhavesh Tilara
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-[#374151] dark:text-[#D1D5DB] mb-6">
               A <span className="text-[#10B981] font-semibold">full-stack developer</span> with a passion for crafting cutting-edge web experiences. With over 5 years in tech, I specialize in Next.js, TypeScript, and cloud solutions, turning ideas into scalable realities. When I’m not coding, I’m diving into AI innovations or sketching my next app concept over a strong cup of coffee.
