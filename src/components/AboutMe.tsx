@@ -2,94 +2,108 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import { useState, useEffect } from 'react';
+import { useDarkMode } from '../lib/DarkModeContext';
+
+const Typewriter = ({ text, speed = 100 }: { text: string; speed?: number }) => {
+  const [displayText, setDisplayText] = useState('');
+  useEffect(() => {
+    let i = 0;
+    const typing = setInterval(() => {
+      if (i < text.length) {
+        setDisplayText(text.slice(0, i + 1));
+        i++;
+      } else {
+        clearInterval(typing);
+      }
+    }, speed);
+    return () => clearInterval(typing);
+  }, [text, speed]);
+  return <span>{displayText}</span>;
+};
 
 export default function AboutMe() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2, delayChildren: 0.3 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
+  const { darkMode } = useDarkMode();
 
   return (
-    <section
-      id="about"
-      className="relative flex items-center justify-center bg-[#F9FAFB] dark:bg-[#1F2937] py-12 md:py-20 overflow-hidden"
-    >
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1E3A8A]/10 via-transparent to-[#10B981]/10 z-0" />
-
-      <div className="relative w-full max-w-6xl px-4 sm:px-6 lg:px-8 z-10">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-20 flex flex-col lg:flex-row items-center justify-between min-h-screen">
+      {/* Photo (moved above text in mobile) */}
+      <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        animate={{ y: [0, -10, 0], transition: { repeat: Infinity, duration: 3, ease: 'easeInOut' } }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        viewport={{ once: true }}
+        className="lg:w-1/2 w-full flex justify-center order-1 lg:order-2 mb-10 lg:mb-0"
+      >
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center"
+          whileHover={{ scale: 1.05, rotate: 2 }}
+          className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 bg-light-accent dark:bg-dark-accent rounded-full overflow-hidden border-4 border-light-primary dark:border-dark-primary"
         >
-          {/* Left: Image with Hover Effect */}
-          <motion.div
-            variants={itemVariants}
-            className="relative flex justify-center"
-          >
-            <motion.div
-              whileHover={{ scale: 1.05, rotate: 2 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-              className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-xl border-4 border-[#10B981]"
-            >
-              <Image
-                src="/profile.jpg" // Add your image to /public/
-                alt="John Doe"
-                fill
-                className="object-cover"
-              />
-              {/* Tech Overlay */}
-              <div className="absolute inset-0 bg-[#1E3A8A]/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                <span className="text-white text-lg font-bold">Code & Create</span>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Right: Text Content */}
-          <motion.div variants={itemVariants} className="text-center lg:text-left">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1E3A8A] dark:text-[#60A5FA] mb-4">
-              Hey, I’m Bhavesh Tilara
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl text-[#374151] dark:text-[#D1D5DB] mb-6">
-              A <span className="text-[#10B981] font-semibold">full-stack developer</span> with a passion for crafting cutting-edge web experiences. With over 5 years in tech, I specialize in Next.js, TypeScript, and cloud solutions, turning ideas into scalable realities. When I’m not coding, I’m diving into AI innovations or sketching my next app concept over a strong cup of coffee.
-            </p>
-            <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-8">
-              <span className="px-3 py-1 bg-[#10B981] text-white text-sm rounded-full shadow-md">
-                Next.js
-              </span>
-              <span className="px-3 py-1 bg-[#1E3A8A] text-white text-sm rounded-full shadow-md">
-                TypeScript
-              </span>
-              <span className="px-3 py-1 bg-[#F59E0B] text-white text-sm rounded-full shadow-md">
-                AWS
-              </span>
-            </div>
-            <motion.button
-              whileHover={{
-                scale: 1.05,
-                backgroundColor: '#10B981',
-                boxShadow: '0 4px 14px rgba(16, 185, 129, 0.3)',
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 py-3 bg-[#1E3A8A] dark:bg-[#1E40AF] text-white text-sm sm:text-base rounded-full shadow-md transition-all duration-300"
-            >
-              Explore My Work
-            </motion.button>
-          </motion.div>
+          <img src="/profile-placeholder.jpg" alt="Profile" className="w-full h-full object-cover" />
         </motion.div>
-      </div>
-    </section>
+      </motion.div>
+
+      {/* Text Content */}
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="lg:w-1/2 w-full order-2 lg:order-1"
+      >
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-4xl sm:text-5xl lg:text-6xl font-bold text-light-primary dark:text-dark-primary mb-4"
+        >
+          <Typewriter text="Hey, I’m [Your Name]" />
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-light-text dark:text-dark-text text-lg sm:text-xl lg:text-2xl leading-relaxed"
+        >
+          A passionate <span className="text-light-accent dark:text-dark-accent">[Your Profession]</span> crafting modern, user-focused digital experiences with creativity and code.
+        </motion.p>
+        <motion.button
+          whileHover={{ scale: 1.05, backgroundColor: darkMode ? '#4ECCA3' : '#007F5F' }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setIsResumeOpen(!isResumeOpen)}
+          className="mt-6 px-6 py-2 bg-light-primary dark:bg-dark-primary text-light-text dark:text-dark-text rounded-full font-medium text-lg"
+        >
+          {isResumeOpen ? 'Hide Resume' : 'View Resume'}
+        </motion.button>
+        {isResumeOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            transition={{ duration: 0.5 }}
+            className="mt-6 p-4 bg-light-background dark:bg-dark-background rounded-lg border border-light-border dark:border-dark-border"
+          >
+            <h2 className="text-2xl font-bold text-light-primary dark:text-dark-primary mb-4">
+              Interactive Resume
+            </h2>
+            <motion.div whileHover={{ scale: 1.02 }} className="space-y-4 text-light-text dark:text-dark-text">
+              <p><strong>Experience:</strong> [Your Job Title] at [Company] (2020 - Present)</p>
+              <p><strong>Education:</strong> [Degree] from [University] (2016 - 2020)</p>
+              <p><strong>Skills:</strong> Next.js, Tailwind CSS, Framer Motion</p>
+            </motion.div>
+            <motion.a
+              href="/resume.pdf"
+              download
+              whileHover={{ scale: 1.05, backgroundColor: darkMode ? '#4ECCA3' : '#007F5F' }}
+              whileTap={{ scale: 0.95 }}
+              className="mt-6 inline-block px-6 py-2 bg-light-primary dark:bg-dark-primary text-light-text dark:text-dark-text rounded-full font-medium"
+            >
+              Download PDF
+            </motion.a>
+          </motion.div>
+        )}
+      </motion.div>
+    </div>
   );
 }

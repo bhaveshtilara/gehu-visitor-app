@@ -1,9 +1,18 @@
-// src/lib/colors.ts
 export const colors = {
-    primary: '#1E3A8A',    // Deep blue for sophistication
-    secondary: '#10B981',  // Vibrant green for accents
-    background: '#F9FAFB', // Light gray for a clean background
-    darkBg: '#111827',     // Dark gray for contrast sections
-    text: '#374151',       // Soft black for readability
-    accent: '#F59E0B',     // Warm yellow for highlights
-  };
+  light: {
+    background: '#F4F4F4',
+    primary: '#007F5F',
+    accent: '#FF9F1C',
+    text: '#2D3436',
+    card: '#FFFFFF',
+    border: '#DDDDDD',
+  },
+  dark: {
+    background: '#0D0D0D',
+    primary: '#4ECCA3',
+    accent: '#F5A623',
+    text: '#EAEAEA',
+    card: '#1A1A1A',
+    border: '#333333',
+  },
+};

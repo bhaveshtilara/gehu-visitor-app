@@ -1,23 +1,25 @@
 // src/app/layout.tsx
-import { ReactNode } from 'react';
-import Navbar from '../components/Navbar';
-import FloatingContact from '../components/FloatingContact';
-import DarkModeToggle from '../components/DarkModeToggle';
+'use client';
+
+import { Inter } from 'next/font/google';
 import './globals.css';
+import Navbar from '../components/Navbar';
+import { DarkModeProvider } from '../lib/DarkModeContext';
 
-export const metadata = {
-  title: 'John Doe - Portfolio',
-  description: 'A modern portfolio showcasing my work and skills.',
-};
+const inter = Inter({ subsets: ['latin'] });
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
-      <body className="scroll-smooth snap-y snap-mandatory overflow-y-scroll">
-        <Navbar />
-        <DarkModeToggle />
-        {children}
-        <FloatingContact />
+      <body className={inter.className}>
+        <DarkModeProvider>
+          <Navbar />
+          {children}
+        </DarkModeProvider>
       </body>
     </html>
   );

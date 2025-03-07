@@ -2,67 +2,75 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useDarkMode } from '../lib/DarkModeContext';
 
 const projects = [
-  { title: 'EcoTrack', description: 'A sustainability app...', link: '#', tags: ['Web', 'Sustainability'] },
-  { title: 'PixelCraft', description: 'An interactive design tool...', link: '#', tags: ['Creative', 'UI/UX'] },
-  { title: 'TaskSphere', description: 'A collaborative task platform...', link: '#', tags: ['Productivity', 'Backend'] },
+  {
+    title: 'Project 1',
+    shortDesc: 'A modern web app built with Next.js.',
+    desc: 'This project is a high-performance web application designed to streamline user workflows. It features real-time data updates, a responsive design optimized for all devices, and a clean, intuitive interface that enhances user experience across platforms.',
+    tech: 'Next.js, TypeScript, Tailwind CSS',
+    link: '#',
+  },
+  {
+    title: 'Project 2',
+    shortDesc: 'An e-commerce platform with Tailwind CSS.',
+    desc: 'A robust e-commerce solution with a sleek, modern UI. It includes secure payment integration via Stripe, advanced product filtering, and a scalable backend to handle inventory and user management, delivering a seamless shopping experience.',
+    tech: 'React, Tailwind CSS, Stripe',
+    link: '#',
+  },
+  {
+    title: 'Project 3',
+    shortDesc: 'A portfolio site with Framer Motion.',
+    desc: 'A dynamic personal portfolio showcasing creative work with smooth animations and transitions. Built to highlight skills and projects, it leverages a modern tech stack for fast load times and an engaging, interactive design.',
+    tech: 'Next.js, Framer Motion, Vercel',
+    link: '#',
+  },
 ];
 
 export default function Projects() {
+  const { darkMode } = useDarkMode();
+
   return (
-    <section
-      id="projects"
-      className="flex items-center justify-center bg-[#111827] dark:bg-[#0F172A] text-white py-12 md:py-20"
-    >
-      <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.h1
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-3xl sm:text-4xl font-bold text-center mb-10 md:mb-16"
-        >
-          Projects
-        </motion.h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.05, boxShadow: '0 10px 20px rgba(30, 58, 138, 0.2)' }}
-              className="bg-[#F9FAFB] dark:bg-[#374151] text-[#374151] dark:text-[#D1D5DB] p-5 sm:p-6 rounded-lg shadow-lg flex flex-col justify-between"
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <motion.h1
+        initial={{ opacity: 0, scale: 0.8 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="text-4xl md:text-5xl font-bold text-light-primary dark:text-dark-primary mb-12 text-center"
+      >
+        Projects
+      </motion.h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {projects.map((project, index) => (
+          <motion.div
+            key={project.title}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: index * 0.2, ease: 'easeOut' }}
+            viewport={{ once: true }}
+            whileHover={{
+              scale: 1.03,
+              boxShadow: darkMode ? '0 10px 20px rgba(78, 204, 163, 0.3)' : '0 10px 20px rgba(0, 127, 95, 0.3)',
+            }}
+            className="bg-light-card dark:bg-dark-card p-6 rounded-lg shadow-md border border-light-border dark:border-dark-border w-full max-w-sm mx-auto"
+          >
+            <h2 className="text-2xl font-semibold text-light-text dark:text-dark-text mb-2">{project.title}</h2>
+            <p className="text-sm text-light-text dark:text-dark-text mb-2">{project.shortDesc}</p>
+            <p className="text-light-text dark:text-dark-text mb-4">{project.desc}</p>
+            <p className="text-sm text-light-accent dark:text-dark-accent mb-4">Tech: {project.tech}</p>
+            <motion.a
+              href={project.link}
+              whileHover={{ scale: 1.05, color: darkMode ? '#F5A623' : '#FF9F1C' }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-block px-4 py-2 bg-light-primary dark:bg-dark-primary text-light-text dark:text-dark-text rounded-full font-medium"
             >
-              <div>
-                <h2 className="text-lg sm:text-xl font-semibold text-[#1E3A8A] dark:text-[#60A5FA] mb-2">
-                  {project.title}
-                </h2>
-                <p className="text-sm sm:text-base mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag, idx) => (
-                    <span
-                      key={idx}
-                      className="text-xs sm:text-sm bg-[#10B981] dark:bg-[#34D399] text-white px-2 py-1 rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <motion.a
-                href={project.link}
-                whileHover={{ color: '#10B981' }}
-                className="text-[#1E3A8A] dark:text-[#60A5FA] text-sm sm:text-base font-medium hover:underline"
-              >
-                View Project
-              </motion.a>
-            </motion.div>
-          ))}
-        </div>
+              View Project
+            </motion.a>
+          </motion.div>
+        ))}
       </div>
-    </section>
+    </div>
   );
 }
