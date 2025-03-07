@@ -41,7 +41,7 @@ export default function AboutMe() {
           whileHover={{ scale: 1.05, rotate: 2 }}
           className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 bg-light-accent dark:bg-dark-accent rounded-full overflow-hidden border-4 border-light-primary dark:border-dark-primary"
         >
-          <img src="/profile-placeholder.jpg" alt="Profile" className="w-full h-full object-cover" />
+          <img src="/profile.jpg" alt="Profile" className="w-full h-full object-cover" />
         </motion.div>
       </motion.div>
 
@@ -67,7 +67,7 @@ export default function AboutMe() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-light-text dark:text-dark-text text-lg sm:text-xl lg:text-2xl leading-relaxed"
         >
-          A passionate <span className="text-light-accent dark:text-dark-accent">[Your Profession]</span> crafting modern, user-focused digital experiences with creativity and code.
+          A passionate <span className="text-light-accent dark:text-dark-accent">Bhavesh Tilara</span> crafting modern, user-focused digital experiences with creativity and code.
         </motion.p>
         <motion.button
           whileHover={{ scale: 1.05, backgroundColor: darkMode ? '#4ECCA3' : '#007F5F' }}
