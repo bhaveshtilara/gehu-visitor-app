@@ -88,7 +88,7 @@ export default function AboutMe() {
             className="mt-6 p-4 bg-light-background dark:bg-dark-background rounded-lg border border-light-border dark:border-dark-border"
           >
             <h2 className="text-2xl font-bold text-light-primary dark:text-dark-primary mb-4">
-              Interactive Resume
+              My Resume
             </h2>
             <motion.div whileHover={{ scale: 1.02 }} className="space-y-4 text-light-text dark:text-dark-text">
               <p><strong>Experience:</strong> [Your Job Title] at [Company] (2020 - Present)</p>
