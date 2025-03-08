@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState } from 'react';
-import { useDarkMode } from '../lib/DarkModeContext'; // Import Dark Mode Context
+import { useDarkMode } from '../lib/DarkModeContext';
 
 const navLinks = [
   { name: 'About', href: '#about' },
@@ -15,7 +15,7 @@ const navLinks = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { darkMode, setDarkMode } = useDarkMode(); // ✅ Fix: Use Dark Mode Context
+  const { darkMode, setDarkMode } = useDarkMode();
 
   return (
     <motion.nav
@@ -26,17 +26,9 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
           <motion.div whileHover={{ scale: 1.1 }} className="flex-shrink-0">
-            <Image
-              src="/logo.png" // Add your logo in public/
-              alt="Logo"
-              width={40}
-              height={40}
-            />
+            <Image src="/logo.png" alt="Logo" width={40} height={40} />
           </motion.div>
-
-          {/* Desktop Links */}
           <div className="hidden md:flex space-x-8">
             {navLinks.map((link) => (
               <motion.a
@@ -49,18 +41,14 @@ export default function Navbar() {
               </motion.a>
             ))}
           </div>
-
-          {/* Dark Mode Toggle */}
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => setDarkMode((prev: boolean) => !prev)} // ✅ Fix: Ensure `setDarkMode` is a function
+            onClick={() => setDarkMode(!darkMode)} // ✅ Fixed
             className="p-2 rounded-full bg-light-primary dark:bg-dark-primary text-white"
           >
             {darkMode ? '☀️' : '🌙'}
           </motion.button>
-
-          {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -70,8 +58,6 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-
-        {/* Mobile Menu */}
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}

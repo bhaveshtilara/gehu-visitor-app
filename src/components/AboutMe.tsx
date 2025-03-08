@@ -1,7 +1,7 @@
-// src/components/AboutMe.tsx
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image'; // Added import
 import { useState, useEffect } from 'react';
 import { useDarkMode } from '../lib/DarkModeContext';
 
@@ -28,7 +28,6 @@ export default function AboutMe() {
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-20 flex flex-col lg:flex-row items-center justify-between min-h-screen">
-      {/* Photo (moved above text in mobile) */}
       <motion.div
         initial={{ opacity: 0, x: 50 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -41,11 +40,15 @@ export default function AboutMe() {
           whileHover={{ scale: 1.05, rotate: 2 }}
           className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 bg-light-accent dark:bg-dark-accent rounded-full overflow-hidden border-4 border-light-primary dark:border-dark-primary"
         >
-          <img src="/profile.jpg" alt="Profile" className="w-full h-full object-cover" />
+          <Image
+            src="/profile.jpg"
+            alt="Profile"
+            width={384}
+            height={384}
+            className="object-cover"
+          />
         </motion.div>
       </motion.div>
-
-      {/* Text Content */}
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -59,7 +62,7 @@ export default function AboutMe() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-4xl sm:text-5xl lg:text-6xl font-bold text-light-primary dark:text-dark-primary mb-4"
         >
-          <Typewriter text="Hey, I’m [Your Name]" />
+          <Typewriter text="Hey, I’m Bhavesh Tilara" />
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -67,7 +70,7 @@ export default function AboutMe() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-light-text dark:text-dark-text text-lg sm:text-xl lg:text-2xl leading-relaxed"
         >
-          A passionate <span className="text-light-accent dark:text-dark-accent">Bhavesh Tilara</span> crafting modern, user-focused digital experiences with creativity and code.
+          A passionate <span className="text-light-accent dark:text-dark-accent">Web Developer</span> crafting modern, user-focused digital experiences with creativity and code.
         </motion.p>
         <motion.button
           whileHover={{ scale: 1.05, backgroundColor: darkMode ? '#4ECCA3' : '#007F5F' }}

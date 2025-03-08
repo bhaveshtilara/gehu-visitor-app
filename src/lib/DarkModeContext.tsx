@@ -5,7 +5,7 @@ import { createContext, useContext, useState, useEffect, ReactNode } from 'react
 
 interface DarkModeContextType {
   darkMode: boolean;
-  setDarkMode: (value: boolean) => void;
+  setDarkMode: (value: boolean) => void; // ✅ Expects boolean
 }
 
 const DarkModeContext = createContext<DarkModeContextType | undefined>(undefined);
