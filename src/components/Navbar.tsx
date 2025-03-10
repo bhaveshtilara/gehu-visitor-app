@@ -25,9 +25,9 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-<motion.div whileHover={{ scale: 1.1 }} className="flex-shrink-0">
-  <FaCode className="w-10 h-10 text-light-primary dark:text-dark-primary" />
-</motion.div>
+          <motion.div whileHover={{ scale: 1.1 }} className="flex-shrink-0">
+            <FaCode className="w-10 h-10 text-light-primary dark:text-dark-primary" />
+          </motion.div>
           <div className="hidden md:flex space-x-8">
             {navLinks.map((link) => (
               <motion.a
@@ -58,22 +58,30 @@ export default function Navbar() {
           </div>
         </div>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            className="md:hidden bg-light-card dark:bg-dark-card"
-          >
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
+          <div className="fixed inset-0 bg-black bg-opacity-50 z-40 flex justify-center items-center">
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              className="md:hidden bg-light-card dark:bg-dark-card z-50 relative p-6 rounded-lg w-full max-w-xs"
+            >
+              <button
                 onClick={() => setIsOpen(false)}
-                className="block px-4 py-2 text-light-text dark:text-dark-text"
+                className="absolute top-2 right-2 text-light-text dark:text-dark-text text-2xl"
               >
-                {link.name}
-              </a>
-            ))}
-          </motion.div>
+                ✕
+              </button>
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className="block px-4 py-2 text-light-text dark:text-dark-text"
+                >
+                  {link.name}
+                </a>
+              ))}
+            </motion.div>
+          </div>
         )}
       </div>
     </motion.nav>
