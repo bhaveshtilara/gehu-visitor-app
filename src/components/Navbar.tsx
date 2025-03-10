@@ -1,10 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { useState } from 'react';
 import { useDarkMode } from '../lib/DarkModeContext';
-
+import { FaCode } from 'react-icons/fa';
 const navLinks = [
   { name: 'About', href: '#about' },
   { name: 'Projects', href: '#projects' },
@@ -26,9 +25,9 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <motion.div whileHover={{ scale: 1.1 }} className="flex-shrink-0">
-            <Image src="/logo.png" alt="Logo" width={40} height={40} />
-          </motion.div>
+<motion.div whileHover={{ scale: 1.1 }} className="flex-shrink-0">
+  <FaCode className="w-10 h-10 text-light-primary dark:text-dark-primary" />
+</motion.div>
           <div className="hidden md:flex space-x-8">
             {navLinks.map((link) => (
               <motion.a
@@ -44,7 +43,7 @@ export default function Navbar() {
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => setDarkMode(!darkMode)} // ✅ Fixed
+            onClick={() => setDarkMode(!darkMode)}
             className="p-2 rounded-full bg-light-primary dark:bg-dark-primary text-white"
           >
             {darkMode ? '☀️' : '🌙'}

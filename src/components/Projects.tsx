@@ -1,4 +1,3 @@
-// src/components/Projects.tsx
 'use client';
 
 import { motion } from 'framer-motion';
@@ -6,25 +5,25 @@ import { useDarkMode } from '../lib/DarkModeContext';
 
 const projects = [
   {
-    title: 'Project 1',
-    shortDesc: 'A modern web app built with Next.js.',
-    desc: 'This project is a high-performance web application designed to streamline user workflows. It features real-time data updates, a responsive design optimized for all devices, and a clean, intuitive interface that enhances user experience across platforms.',
-    tech: 'Next.js, TypeScript, Tailwind CSS',
-    link: '#',
+    title: 'AlmoraDarshan',
+    shortDesc: 'A tour and travel package website for Uttarakhand.',
+    desc: 'A web application showcasing travel packages for Almora, Uttarakhand, designed to help tourists explore and book trips effortlessly. Features a responsive interface with detailed itineraries and a user-friendly booking system.',
+    tech: 'HTML, CSS, JavaScript, PHP',
+    link: 'https://almora-darshan.vercel.app/',
   },
   {
-    title: 'Project 2',
-    shortDesc: 'An e-commerce platform with Tailwind CSS.',
-    desc: 'A robust e-commerce solution with a sleek, modern UI. It includes secure payment integration via Stripe, advanced product filtering, and a scalable backend to handle inventory and user management, delivering a seamless shopping experience.',
-    tech: 'React, Tailwind CSS, Stripe',
-    link: '#',
+    title: 'Sorting Odyssey',
+    shortDesc: 'An interactive sorting visualizer with sound effects.',
+    desc: 'A creative web tool that visualizes sorting algorithms like Bubble Sort and Quick Sort, enhanced with sound effects for an immersive educational experience. Built with a dynamic front-end for real-time interaction.',
+    tech: 'HTML, CSS, JavaScript',
+    link: 'https://sortingvisualizer-wine-seven.vercel.app/',
   },
   {
-    title: 'Project 3',
-    shortDesc: 'A portfolio site with Framer Motion.',
-    desc: 'A dynamic personal portfolio showcasing creative work with smooth animations and transitions. Built to highlight skills and projects, it leverages a modern tech stack for fast load times and an engaging, interactive design.',
-    tech: 'Next.js, Framer Motion, Vercel',
-    link: '#',
+    title: 'My Portfolio',
+    shortDesc: 'A personal portfolio showcasing my work.',
+    desc: 'A modern portfolio site highlighting my skills and projects with smooth animations and a responsive design. Built to demonstrate proficiency in full-stack development and creative coding.',
+    tech: 'Next.js, React.js, Tailwind CSS',
+    link: 'https://bhavesh-tilara.vercel.app/',
   },
 ];
 
@@ -32,7 +31,7 @@ export default function Projects() {
   const { darkMode } = useDarkMode();
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 overflow-x-hidden">
       <motion.h1
         initial={{ opacity: 0, scale: 0.8 }}
         whileInView={{ opacity: 1, scale: 1 }}
@@ -42,7 +41,7 @@ export default function Projects() {
       >
         Projects
       </motion.h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
         {projects.map((project, index) => (
           <motion.div
             key={project.title}

@@ -1,20 +1,21 @@
-// src/components/Achievements.tsx
 'use client';
 
 import { motion } from 'framer-motion';
 import { useDarkMode } from '../lib/DarkModeContext';
 
 const achievements = [
-  { year: '2023', title: 'Best Developer Award', desc: 'Recognized for outstanding contributions in web development.' },
-  { year: '2022', title: 'Launched Major Project', desc: 'Successfully deployed a large-scale client application.' },
-  { year: '2021', title: 'Completed Certification', desc: 'Earned a professional certification in full-stack development.' },
+  { year: '2024', title: 'GirlScript Summer of Code 2024', desc: 'Contributed to open-source projects in the extended edition.' },
+  { year: '2024', title: 'Solved 100+ Problems on LeetCode', desc: 'Demonstrated strong problem-solving skills.' },
+  { year: '2024', title: 'Flipkart GRiD 6.0', desc: 'Participated in a competitive coding challenge.' },
+  { year: '2024', title: '24-Hour Hackathon by Tech Geeks Club', desc: 'Collaborated in a fast-paced coding event.' },
+  { year: '2024', title: 'HackWithInfy 2024', desc: 'Competed in Infosys’s national hackathon.' },
 ];
 
 export default function Achievements() {
   const { darkMode } = useDarkMode();
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 overflow-x-hidden">
       <motion.h1
         initial={{ opacity: 0, scale: 0.8 }}
         whileInView={{ opacity: 1, scale: 1 }}
@@ -24,7 +25,7 @@ export default function Achievements() {
       >
         Achievements
       </motion.h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
         {achievements.map((achievement, index) => (
           <motion.div
             key={achievement.title}

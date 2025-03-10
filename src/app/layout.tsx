@@ -1,4 +1,3 @@
-// src/app/layout.tsx
 'use client';
 
 import { Inter } from 'next/font/google';
@@ -15,6 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" type="image/x-icon" href="/favicon.png" />
+      </head>
       <body className={inter.className}>
         <DarkModeProvider>
           <Navbar />

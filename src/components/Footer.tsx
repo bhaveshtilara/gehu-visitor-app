@@ -9,10 +9,10 @@ export default function Footer() {
   const { darkMode } = useDarkMode();
 
   const socialLinks = [
-    { name: 'Twitter', href: 'https://twitter.com/yourhandle', icon: FaTwitter },
-    { name: 'GitHub', href: 'https://github.com/yourhandle', icon: FaGithub },
-    { name: 'LinkedIn', href: 'https://linkedin.com/in/yourhandle', icon: FaLinkedin },
-    { name: 'Instagram', href: 'https://instagram.com/yourhandle', icon: FaInstagram },
+    { name: 'Twitter', href: 'https://x.com/bhaveshhhh_03', icon: FaTwitter },
+    { name: 'GitHub', href: 'https://github.com/bhaveshtilara', icon: FaGithub },
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/bhaveshtilara03/', icon: FaLinkedin },
+    { name: 'Instagram', href: 'https://www.instagram.com/bhaveshh._.03/', icon: FaInstagram },
   ];
 
   return (
@@ -49,7 +49,7 @@ export default function Footer() {
           viewport={{ once: true }}
           className="text-center text-light-text dark:text-dark-text mt-6 text-sm"
         >
-          © {new Date().getFullYear()} [Your Name]. All rights reserved.
+          © {new Date().getFullYear()} [Bhavesh Tilara]. All rights reserved.
         </motion.p>
       </div>
     </footer>
