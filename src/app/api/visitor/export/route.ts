@@ -2,12 +2,25 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import VisitorModel from '@/models/Visitor';
 import { Parser } from 'json2csv';
+import { Visitor } from '@/types/visitor';
+
+// Define the shape of the CSV data
+interface CSVVisitor {
+  visitorId: string;
+  name: string;
+  phone: string;
+  category: string;
+  purpose: string;
+  checkInTime: string;
+  checkOutTime: string;
+  status: string;
+}
 
 export async function GET() {
   try {
     await dbConnect();
 
-    const visitors = await VisitorModel.find().lean();
+    const visitors = await VisitorModel.find().lean() as Visitor[];
 
     if (!visitors || visitors.length === 0) {
       return NextResponse.json(
@@ -17,8 +30,8 @@ export async function GET() {
     }
 
     // Prepare the data for CSV
-    const csvData = visitors.map((visitor: any) => {
-      const latestVisit = visitor.visits[visitor.visits.length - 1] || {};
+    const csvData: CSVVisitor[] = visitors.map((visitor: Visitor) => {
+      const latestVisit = visitor.visits[visitor.visits.length - 1] || { date: null, exitDate: null };
       return {
         visitorId: visitor.visitorId,
         name: visitor.name,
@@ -50,7 +63,7 @@ export async function GET() {
     });
 
     // Define CSV fields
-    const fields = [
+    const fields: (keyof CSVVisitor)[] = [
       'visitorId',
       'name',
       'phone',

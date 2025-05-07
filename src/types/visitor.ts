@@ -1,5 +1,5 @@
 export interface Visitor {
-  _id: string; // Changed from ObjectId to string
+  _id: string;
   visitorId: string;
   name: string;
   phone: string;
@@ -8,13 +8,13 @@ export interface Visitor {
   photoUrl?: string;
   visits: Visit[];
   isBlocked: boolean;
-  createdAt: string; // Changed from Date to string
-  updatedAt: string; // Changed from Date to string
+  createdAt: string;
+  updatedAt: string;
   __v?: number;
 }
 
 export interface Visit {
-  _id: string; // Changed from ObjectId to string
-  date: string; // Changed from Date to string
-  exitDate?: string | null; // Changed from Date to string
+  _id: string;
+  date: string;
+  exitDate?: string | null;
 }

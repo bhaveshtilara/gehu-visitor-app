@@ -54,7 +54,7 @@ export default function ConfirmationPageClient({
         throw new Error(errorData.message || 'Failed to check out');
       }
 
-      const data = await res.json();
+      // Removed the unused 'data' variable
       setCheckOutStatus('Checked Out');
       setTimeout(() => {
         window.location.reload(); // Refresh to update check-out time

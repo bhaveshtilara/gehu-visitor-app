@@ -4,7 +4,7 @@ import VisitorModel from '@/models/Visitor';
 import QRCode from 'qrcode';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
-import { Visitor } from '@/types/visitor';
+import { Visitor, Visit } from '@/types/visitor';
 import ConfirmationPageClient from './ConfirmationPageClient';
 
 interface ConfirmationPageProps {
@@ -16,23 +16,31 @@ export default async function ConfirmationPage({ params }: ConfirmationPageProps
 
   await dbConnect();
 
-  const visitorDoc = await VisitorModel.findOne({ visitorId }).lean();
+  const visitorDoc = await VisitorModel.findOne({ visitorId }).lean() as Visitor | null;
   if (!visitorDoc) {
     notFound();
   }
 
-  // Convert the MongoDB document to a plain object
+  // Convert the MongoDB document to a plain object, ensuring all required fields
   const visitor: Visitor = {
     ...visitorDoc,
     _id: visitorDoc._id.toString(),
-    createdAt: visitorDoc.createdAt.toISOString(),
-    updatedAt: visitorDoc.updatedAt.toISOString(),
-    visits: visitorDoc.visits.map((visit: any) => ({
+    visitorId: visitorDoc.visitorId ?? '', // Ensure required field
+    name: visitorDoc.name ?? '', // Ensure required field
+    phone: visitorDoc.phone ?? '', // Ensure required field
+    purpose: visitorDoc.purpose ?? '', // Ensure required field
+    category: visitorDoc.category ?? 'Guest', // Ensure required field with a default
+    isBlocked: visitorDoc.isBlocked ?? false, // Ensure required field with a default
+    createdAt: visitorDoc.createdAt ? new Date(visitorDoc.createdAt).toISOString() : new Date().toISOString(),
+    updatedAt: visitorDoc.updatedAt ? new Date(visitorDoc.updatedAt).toISOString() : new Date().toISOString(),
+    visits: visitorDoc.visits.map((visit: Visit) => ({
       ...visit,
       _id: visit._id.toString(),
-      date: visit.date.toISOString(),
-      exitDate: visit.exitDate ? visit.exitDate.toISOString() : null,
+      date: visit.date ? new Date(visit.date).toISOString() : new Date().toISOString(),
+      exitDate: visit.exitDate ? new Date(visit.exitDate).toISOString() : null,
     })),
+    photoUrl: visitorDoc.photoUrl, // Optional field
+    __v: visitorDoc.__v, // Optional field
   };
 
   const session = await getServerSession(authOptions);

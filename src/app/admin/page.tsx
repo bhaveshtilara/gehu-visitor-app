@@ -3,7 +3,7 @@ import { authOptions } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import dbConnect from '@/lib/mongodb';
 import VisitorModel from '@/models/Visitor';
-import { Visitor } from '@/types/visitor';
+import { Visitor, Visit } from '@/types/visitor'; // Import Visit type
 import AdminDashboardClient from './AdminDashboardClient';
 
 export default async function AdminDashboard() {
@@ -23,7 +23,7 @@ export default async function AdminDashboard() {
     _id: visitor._id.toString(),
     createdAt: visitor.createdAt ? new Date(visitor.createdAt).toISOString() : new Date().toISOString(),
     updatedAt: visitor.updatedAt ? new Date(visitor.updatedAt).toISOString() : new Date().toISOString(),
-    visits: visitor.visits.map((visit: any) => ({
+    visits: visitor.visits.map((visit: Visit) => ({
       ...visit,
       _id: visit._id.toString(),
       date: visit.date ? new Date(visit.date).toISOString() : new Date().toISOString(),
