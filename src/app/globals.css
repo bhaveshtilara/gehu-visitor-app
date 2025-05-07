@@ -5,21 +5,21 @@
 @tailwind utilities;
 
 :root {
-  --background: #F4F4F4;
-  --primary: #007F5F;
-  --accent: #FF9F1C;
-  --text: #2D3436;
-  --card: #FFFFFF;
-  --border: #DDDDDD;
+  --background: #f5f5f5;
+  --primary: #0d9488;
+  --accent: #f97316;
+  --text: #111827;
+  --card: #ffffff;
+  --border: #e5e7eb;
 }
 
 .dark {
-  --background: #0D0D0D;
-  --primary: #4ECCA3;
-  --accent: #F5A623;
-  --text: #EAEAEA;
-  --card: #1A1A1A;
-  --border: #333333;
+  --background: #1e293b;
+  --primary: #0d9488;
+  --accent: #f97316;
+  --text: #e2e8f0;
+  --card: #3b4a6b;
+  --border: #475569;
 }
 
 body {
@@ -30,4 +30,25 @@ body {
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Print-specific styles */
+@media print {
+  body {
+    background-color: #ffffff; /* White background for printing */
+    color: #000000; /* Black text for better readability */
+  }
+  .no-print {
+    display: none; /* Hide elements with the no-print class */
+  }
+  .print-card {
+    box-shadow: none; /* Remove shadow for printing */
+    border: 1px solid #000000; /* Add a border for clarity */
+    padding: 16px; /* Adjust padding for print */
+    max-width: 400px; /* Ensure card fits well on paper */
+    margin: 0 auto; /* Center the card */
+  }
+  img {
+    filter: none; /* Ensure QR code prints clearly */
+  }
 }

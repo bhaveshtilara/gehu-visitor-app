@@ -10,26 +10,35 @@
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.5",
-    "emailjs-com": "^3.2.0",
-    "framer-motion": "^12.4.10",
-    "next": "15.2.1",
-    "p5": "^1.11.3",
+    "@heroicons/react": "^2.2.0",
+    "cloudinary": "^2.6.1",
+    "dotenv": "^16.5.0",
+    "json2csv": "^6.0.0-alpha.2",
+    "mongoose": "^8.14.1",
+    "next": "^15.3.1",
+    "next-auth": "^4.24.11",
+    "next-cloudinary": "^6.16.0",
+    "nodemailer": "^6.10.1",
+    "qrcode": "^1.5.4",
+    "qrcode.react": "^4.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
-    "react-p5-wrapper": "^4.1.2",
-    "tone": "^15.0.4"
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
-    "@types/p5": "^1.7.6",
+    "@types/nodemailer": "^6.4.17",
+    "@types/qrcode": "^1.5.5",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.21",
     "eslint": "^9",
     "eslint-config-next": "15.2.1",
-    "tailwindcss": "^4",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.5",
     "typescript": "^5"
   }
 }
